@@ -1,8 +1,7 @@
 import useGenres from "@/hooks/useGenres";
-import type { FC } from "react";
 
 const GenreList = ({}) => {
-	const { genres } = useGenres();
+	const { data: genres } = useGenres();
 
 	return (
 		<ul>
