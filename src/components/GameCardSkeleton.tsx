@@ -5,7 +5,7 @@ interface GameCardSkeletonProps {}
 
 const GameCardSkeleton: FC<GameCardSkeletonProps> = ({}) => {
 	return (
-		<Card.Root width="300px" borderRadius={13} overflow="hidden">
+		<Card.Root>
 			<Skeleton height="200px" />
 			<Card.Body>
 				<Skeleton height="20px" mb="10px" />
