@@ -7,35 +7,42 @@ interface FetchResponse<T> {
 	results: T[];
 }
 
-const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig) => {
+const useData = <T>(
+	endpoint: string,
+	requestConfig?: AxiosRequestConfig,
+	deps?: [number | undefined]
+) => {
 	const [data, setData] = useState<T[]>([]);
 	const [error, setError] = useState<string | null>(null);
 	const [isLoading, setIsLoading] = useState(false);
 
-	useEffect(() => {
-		const controller = new AbortController();
-		setIsLoading(true);
+	useEffect(
+		() => {
+			const controller = new AbortController();
+			setIsLoading(true);
 
-		const fetchData = async () => {
-			try {
-				const response = await apiClient.get<FetchResponse<T>>(endpoint, {
-					signal: controller.signal,
-					...requestConfig,
-				});
-				setData(response.data.results);
-				setIsLoading(false);
-			} catch (error) {
-				if (error instanceof CanceledError) return;
-				setError("Failed to fetch genres");
-				console.error(error);
-				setIsLoading(false);
-			}
-		};
+			const fetchData = async () => {
+				try {
+					const response = await apiClient.get<FetchResponse<T>>(endpoint, {
+						signal: controller.signal,
+						...requestConfig,
+					});
+					setData(response.data.results);
+					setIsLoading(false);
+				} catch (error) {
+					if (error instanceof CanceledError) return;
+					setError("Failed to fetch genres");
+					console.error(error);
+					setIsLoading(false);
+				}
+			};
 
-		fetchData();
+			fetchData();
 
-		return () => controller.abort();
-	}, [endpoint, requestConfig]);
+			return () => controller.abort();
+		},
+		deps ? [...deps] : [] // eslint-disable-line react-hooks/exhaustive-deps
+	);
 
 	return { data, error, isLoading };
 };
