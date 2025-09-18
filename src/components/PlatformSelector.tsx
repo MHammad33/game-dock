@@ -1,6 +1,6 @@
 import type { Platform } from "@/hooks/useGames";
 import usePlatforms from "@/hooks/usePlatforms";
-import { Box, Button, Menu, Portal } from "@chakra-ui/react";
+import { Button, Menu, Portal } from "@chakra-ui/react";
 import type { FC } from "react";
 import { BiChevronDown } from "react-icons/bi";
 
