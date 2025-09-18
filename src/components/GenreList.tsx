@@ -24,15 +24,7 @@ const GenreList: FC<GenreListProps> = ({ onSelectGenre, selectedGenre }) => {
 
 	return (
 		<>
-			<Heading
-				as="h2"
-				fontSize="lg"
-				fontWeight="semibold"
-				mb={4}
-				borderBottom="2px solid"
-				borderColor="gray.200"
-				pb={2}
-			>
+			<Heading as="h2" fontSize="2xl" mb={4} p={2}>
 				Genres
 			</Heading>
 			<List.Root gap={2}>
