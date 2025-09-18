@@ -5,9 +5,10 @@ import type { FC } from "react";
 
 interface GenreListProps {
 	onSelectGenre: (genre: Genre) => void;
+	selectedGenre?: Genre | null;
 }
 
-const GenreList: FC<GenreListProps> = ({ onSelectGenre }) => {
+const GenreList: FC<GenreListProps> = ({ onSelectGenre, selectedGenre }) => {
 	const { data: genres, isLoading, error } = useGenres();
 
 	if (error) return <Text color="red">{error}</Text>;
@@ -25,6 +26,7 @@ const GenreList: FC<GenreListProps> = ({ onSelectGenre }) => {
 						/>
 						<Button
 							fontSize="lg"
+							fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
 							variant="ghost"
 							onClick={() => onSelectGenre(genre)}
 						>
