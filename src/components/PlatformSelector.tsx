@@ -18,31 +18,29 @@ const PlatformSelector: FC<PlatformSelectorProps> = ({
 	if (error) return null;
 
 	return (
-		<Box marginBottom={3}>
-			<Menu.Root>
-				<Menu.Trigger asChild>
-					<Button variant="outline" size="sm">
-						{selectedPlatform?.name || "Platforms"}
-						<BiChevronDown />
-					</Button>
-				</Menu.Trigger>
-				<Portal>
-					<Menu.Positioner>
-						<Menu.Content>
-							{platforms.map((platform) => (
-								<Menu.Item
-									key={platform.id}
-									value={platform.name}
-									onClick={() => onSelectPlatform(platform)}
-								>
-									{platform.name}
-								</Menu.Item>
-							))}
-						</Menu.Content>
-					</Menu.Positioner>
-				</Portal>
-			</Menu.Root>
-		</Box>
+		<Menu.Root>
+			<Menu.Trigger asChild>
+				<Button variant="outline" size="sm">
+					{selectedPlatform?.name || "Platforms"}
+					<BiChevronDown />
+				</Button>
+			</Menu.Trigger>
+			<Portal>
+				<Menu.Positioner>
+					<Menu.Content>
+						{platforms.map((platform) => (
+							<Menu.Item
+								key={platform.id}
+								value={platform.name}
+								onClick={() => onSelectPlatform(platform)}
+							>
+								{platform.name}
+							</Menu.Item>
+						))}
+					</Menu.Content>
+				</Menu.Positioner>
+			</Portal>
+		</Menu.Root>
 	);
 };
 
